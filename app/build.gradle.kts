@@ -1,5 +1,6 @@
 plugins {
     alias(libs.plugins.android.application)
+    alias(libs.plugins.kotlin.android)
 }
 
 android {
@@ -34,6 +35,7 @@ android {
 dependencies {
 
     implementation(libs.appcompat)
+//    implementation(libs.core.ktx)
     implementation(libs.material)
     implementation(libs.activity)
     implementation(libs.constraintlayout)
