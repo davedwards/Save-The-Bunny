@@ -31,8 +31,8 @@ class MainActivity : AppCompatActivity() {
     private var bunnyStartY = 0f
     private var obstacleX = 0f
     private var obstacleStartX = 0f
-    private val jumpHeight = 250
-    private val jumpDuration = 300
+    private val jumpHeight = 200
+    private val jumpDuration = 600
     private val obstacleSpeed = 15
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -104,21 +104,19 @@ class MainActivity : AppCompatActivity() {
         obstacleX -= obstacleSpeed.toFloat()
         if (obstacleX + obstacle!!.getWidth() < 0) {
             score++
-            scoreText!!.setText("Score: " + score)
+            scoreText!!.text = "Score: " + score
             resetObstacle()
         }
-        obstacle!!.setX(obstacleX)
+        obstacle!!.x = obstacleX
         // Collision detection
-//        if (this.isColliding) {
         if (alphaMasksOverlap(bunny!!, obstacle!!))
             endGame()
-        }
     }
 
     private fun resetObstacle() {
-        obstacleX = gameArea!!.getWidth().toFloat()
-        obstacle!!.setY(bunnyStartY)
-        obstacle!!.setX(obstacleX)
+        obstacleX = gameArea!!.width.toFloat()
+        obstacle!!.y = bunnyStartY
+        obstacle!!.x = gameArea!!.width.toFloat()
     }
 
     fun alphaMasksOverlap(a: ImageView, b: ImageView, alphaThreshold: Int = 1): Boolean {
@@ -164,17 +162,4 @@ class MainActivity : AppCompatActivity() {
         bitmapB.recycle()
         return false
     }
-
-
-//    private val isColliding: Boolean
-//        get() {
-//            val bunnyLeft = bunny!!.getX()
-//            val bunnyRight = bunny!!.getX() + bunny!!.getWidth()
-//            val bunnyTop = bunny!!.getY()
-//            val bunnyBottom = bunny!!.getY() + bunny!!.getHeight()
-//            val obsLeft = obstacle!!.getX()
-//            val obsRight = obstacle!!.getX() + obstacle!!.getWidth()
-//            val obsTop = obstacle!!.getY()
-//            val obsBottom = obstacle!!.getY() + obstacle!!.getHeight()
-//            return bunnyRight > obsLeft && bunnyLeft < obsRight && bunnyBottom > obsTop && bunnyTop < obsBottom
-//        }
+}
